@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 99%;
+    --foreground: 224 71% 4%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 215 16% 47%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 224 76% 48%;
+    --primary: 224 76% 48%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 224 71% 4%;
+    --accent: 262 83% 58%;
+    --accent-foreground: 210 40% 98%;
+    --success: 142 72% 29%;
+    --warning: 35 92% 33%;
+    --destructive: 0 84% 40%;
+    --radius: 14px;
+    --easing: cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .dark {
+    --background: 232 25% 10%;
+    --foreground: 210 40% 96%;
+    --muted: 230 18% 18%;
+    --muted-foreground: 224 8% 72%;
+    --card: 232 22% 15%;
+    --card-foreground: 210 40% 96%;
+    --popover: 232 22% 15%;
+    --popover-foreground: 210 40% 96%;
+    --border: 230 16% 28%;
+    --input: 230 16% 28%;
+    --ring: 224 76% 54%;
+    --primary: 224 76% 60%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 230 16% 28%;
+    --secondary-foreground: 210 40% 96%;
+    --accent: 262 83% 62%;
+    --accent-foreground: 222 47% 11%;
+    --success: 142 72% 42%;
+    --warning: 35 92% 56%;
+    --destructive: 0 84% 60%;
+  }
+
+  * {
+    @apply border-border;
+    transition-timing-function: var(--easing);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: hsl(224 8% 60%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+}
+
+@layer utilities {
+  .bg-app {
+    background: linear-gradient(
+      to bottom,
+      hsl(var(--background)),
+      hsla(232, 25%, 10%, 0.45)
+    );
+  }
+}
+
+/* 
+  Design Tokens Usage:
+  - Toggle dark mode by adding/removing 'dark' class on <html>
+  - All colors use HSL values for better manipulation
+  - Use semantic color names (primary, secondary, accent, etc.)
+  - Radius is controlled by --radius CSS variable
+  - Reduced motion is respected for accessibility
+*/

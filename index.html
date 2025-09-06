@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>LockNote — Secure Text Share</title>
+    <meta name="description" content="Encrypt and share text with password-only retrieval. Burn-after-reading and auto-expiry supported." />
+    <meta name="application-name" content="LockNote" />
+    <meta name="apple-mobile-web-app-title" content="LockNote" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#0b1020" />
+
+    <!-- Favicon (force refresh with version) -->
+    <link rel="icon" href="/favicon.ico?v=5" />
+    <link rel="shortcut icon" href="/favicon.ico?v=5" />
+
+    <!-- Prevent dark/light flash -->
+    <script>
+      (() => {
+        const saved = localStorage.getItem('theme');
+        const dark = saved ? saved === 'dark'
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.classList.toggle('dark', dark);
+      })();
+    </script>
+
+    <!-- Vite entry (will be replaced with hashed assets on build) -->
+    <script type="module" src="/src/main.jsx"></script>
+  </head>
+  <body class="bg-background text-foreground">
+    <noscript>
+      <style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;padding:1rem}</style>
+      You need to enable JavaScript to run LockNote.
+    </noscript>
+    <div id="root"></div>
+  </body>
+</html>

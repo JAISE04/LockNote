@@ -1,0 +1,60 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build output
+dist/
+build/
+.tmp/
+.temp/
+*.tsbuildinfo
+
+# Vite
+.vite/
+
+# Test / coverage
+coverage/
+.nyc_output/
+
+# Caches
+.eslintcache
+.stylelintcache
+
+# Env files (keep example)
+.env
+.env.*
+!.env.example
+
+# Supabase (keep migrations/config, ignore local/temp + function deps)
+.supabase/
+supabase/.temp/
+supabase/.branches/
+supabase/.cache/
+supabase/functions/node_modules/
+supabase/functions/.env
+supabase/.env
+supabase/.env.*
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Hosting/platform
+.vercel/
+.netlify/
+
+# Logs
+logs/
+*.log
+
+# Misc
+*.local
