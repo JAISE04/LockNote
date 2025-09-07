@@ -15,6 +15,7 @@ export default function StoreTextTab() {
   const [noteId, setNoteId] = useState("");
   const [expiration, setExpiration] = useState("never");
   const [oneTime, setOneTime] = useState(false);
+  const [showExpirationDropdown, setShowExpirationDropdown] = useState(false);
 
   const validatePassword = (pwd) => pwd.trim().length >= 3;
 
@@ -133,18 +134,43 @@ export default function StoreTextTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <FormGroup label="Expiration" hint="When should this note expire?">
-          <select
-            value={expiration}
-            onChange={(e) => setExpiration(e.target.value)}
-            className="w-full rounded-xl bg-background/40 border border-input px-4 py-3 outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-          >
-            <option value="never">Never</option>
-            <option value="1hour">1 Hour</option>
-            <option value="1day">1 Day</option>
-            <option value="1week">1 Week</option>
-            <option value="1month">1 Month</option>
-          </select>
+          <div className="relative w-full">
+            <button
+              type="button"
+              className="w-full rounded-2xl bg-background/40 text-foreground border border-input px-4 py-3 outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 flex justify-between items-center"
+              onClick={() => setShowExpirationDropdown((v) => !v)}
+              style={{ cursor: 'pointer' }}
+            >
+              {expiration === 'never' && 'Never'}
+              {expiration === '1hour' && '1 Hour'}
+              {expiration === '1day' && '1 Day'}
+              {expiration === '1week' && '1 Week'}
+              {expiration === '1month' && '1 Month'}
+              <span className="ml-2">▼</span>
+            </button>
+              {showExpirationDropdown && (
+                <div className="absolute left-0 mt-2 w-full rounded-2xl bg-black border border-input shadow-lg z-10 backdrop-blur-md">
+                {[
+                  { value: 'never', label: 'Never' },
+                  { value: '1hour', label: '1 Hour' },
+                  { value: '1day', label: '1 Day' },
+                  { value: '1week', label: '1 Week' },
+                  { value: '1month', label: '1 Month' },
+                ].map(opt => (
+                  <div
+                    key={opt.value}
+                    onClick={() => { setExpiration(opt.value); setShowExpirationDropdown(false); }}
+                    className={`px-4 py-3 cursor-pointer rounded-2xl transition-colors duration-150 ${expiration === opt.value ? ' text-blue-400' : 'text-foreground'} hover:text-blue-400`}
+                  >
+                    {opt.label}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </FormGroup>
+
+
 
         <FormGroup label="Security" hint="Additional security options">
           <label className="flex items-center gap-3 cursor-pointer">

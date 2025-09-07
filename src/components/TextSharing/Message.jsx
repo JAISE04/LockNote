@@ -1,4 +1,5 @@
 import React from "react";
+import { QRCodeCanvas } from "qrcode.react";
 import { CheckCircle, XCircle, AlertTriangle } from "lucide-react";
 
 const MessageIcon = ({ type }) => {
@@ -35,10 +36,18 @@ export default function Message({ message, className = "" }) {
           {message.noteId && (
             <div className="mt-3 p-3 bg-background/50 rounded-lg border">
               <div className="text-xs text-muted-foreground mb-2">
-                Note ID (share this with others):
+                Share this note with others:
               </div>
-              <div className="text-sm font-mono font-semibold tracking-wide break-all">
-                {message.noteId}
+              <div className="flex flex-col items-center gap-2">
+                <QRCodeCanvas value={`${window.location.origin}/#${message.noteId}`} size={96} />
+                <a
+                  href={`${window.location.origin}/#${message.noteId}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-mono font-semibold tracking-wide break-all underline"
+                >
+                  {`${window.location.origin}/#${message.noteId}`}
+                </a>
               </div>
               {message.expiration && message.expiration !== "never" && (
                 <div className="text-xs text-muted-foreground mt-2">
