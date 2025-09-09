@@ -146,10 +146,10 @@ export default function StoreTextTab() {
               {expiration === '1day' && '1 Day'}
               {expiration === '1week' && '1 Week'}
               {expiration === '1month' && '1 Month'}
-              <span className="ml-2">▼</span>
+              <span className="ml-2 text-[10px]">▼</span>
             </button>
               {showExpirationDropdown && (
-                <div className="absolute left-0 mt-2 w-full rounded-2xl bg-black border border-input shadow-lg z-10 backdrop-blur-md">
+                <div className="absolute left-0 mt-2 w-full rounded-2xl bg-white dark:bg-black border border-input shadow-lg z-10 backdrop-blur-md">
                 {[
                   { value: 'never', label: 'Never' },
                   { value: '1hour', label: '1 Hour' },
@@ -160,7 +160,7 @@ export default function StoreTextTab() {
                   <div
                     key={opt.value}
                     onClick={() => { setExpiration(opt.value); setShowExpirationDropdown(false); }}
-                    className={`px-4 py-3 cursor-pointer rounded-2xl transition-colors duration-150 ${expiration === opt.value ? ' text-blue-400' : 'text-foreground'} hover:text-blue-400`}
+                    className={`px-4 py-3 cursor-pointer rounded-2xl transition-colors duration-150 ${expiration === opt.value ? 'bg-gray-100 dark:bg-gray-900 text-blue-600' : 'text-gray-900 dark:text-white'} hover:text-blue-600 dark:hover:text-blue-400`}
                   >
                     {opt.label}
                   </div>
